@@ -65,6 +65,15 @@ class AStarSearch:
 
         return True
 
+     def goal_found(self):
+        if self.goal_str in self.not_explored:
+            # Add goal to path.
+            self.pos = self.string_to_array(self.goal_str)
+            self.pos_depth = self.not_explored.pop(self.goal_str)
+            self.path[self.pos[0], self.pos[1]] = self.pos_depth
+            return True
+        return False  
+      
     def heuristic(self, move):
         distance = move - goal
         distance_squared = distance * distance
